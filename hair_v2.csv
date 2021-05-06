@@ -1,0 +1,167 @@
+,X.1,X,Tray..,ID.Tray,ID,species,species.1,State,weigth,Sample.ID,X15N,R,X15N_percent,Total.N,Diet,Locality,year,date,region,speciesID,species2,animal
+1,1,1,1,A1,258424,A.melanoleuca,A.melanoleuca,Sichuan,1.4,258424,1.32,0.00368,0.36678,210.78,bear,Mupin,1933,1933,Sichuan-China,AM,A.melanoleuca,A.melanoleuca
+2,2,2,1,A2,258834,A.melanoleuca,A.melanoleuca,Sichuan,1.43,258834,0.5,0.00368,0.36649,210.81,bear,Wen Chuan,1933,1933,Sichuan-China,AM,A.melanoleuca,A.melanoleuca
+3,3,3,1,A3,258835,A.melanoleuca,A.melanoleuca,Sichuan,1.61,258835,1,0.00368,0.36667,236.19,bear,Wen Chuan,1933,1933,Sichuan-China,AM,A.melanoleuca,A.melanoleuca
+4,4,4,1,A4,258836,A.melanoleuca,A.melanoleuca,Sichuan,1.09,258836,2.39,0.00369,0.36718,158.61,bear,Mupin,1933,1933,Sichuan-China,AM,A.melanoleuca,A.melanoleuca
+5,5,5,1,A5,259074,A.melanoleuca,A.melanoleuca,Sichuan,1.01,259074,0.69,0.00368,0.36656,155.8,bear,Wen Chuan,1934,1934,Sichuan-China,AM,A.melanoleuca,A.melanoleuca
+6,6,6,1,A6,258556,E.cephalopus,E.cephalopus,Sichuan,1.31,258556 a,1.33,0.00368,0.36679,184.38,herbivore,Wen Chuan,1933,1933,Sichuan-China,EC,E.cephalopus,E.cephalopus
+7,7,7,1,A7,258557,E.cephalopus,E.cephalopus,Sichuan,1.16,258557,2.47,0.00369,0.3672,147.38,herbivore,Wen Chuan,1933,1933,Sichuan-China,EC,E.cephalopus,E.cephalopus
+8,8,8,1,A8,258679,E.cephalopus,E.cephalopus,Sichuan,1.01,258679,1.52,0.00368,0.36686,148.19,herbivore,Mupin,1933,1933,Sichuan-China,EC,E.cephalopus,E.cephalopus
+9,9,9,1,A9,258680,E.cephalopus,E.cephalopus,Sichuan,0.94,258680,3.17,0.00369,0.36746,103.29,herbivore,Mupin,1933,1933,Sichuan-China,EC,E.cephalopus,E.cephalopus
+10,10,10,1,A10,258681,E.cephalopus,E.cephalopus,Sichuan,0.91,258681,2.09,0.00368,0.36707,121.8,herbivore,Mupin,1933,1933,Sichuan-China,EC,E.cephalopus,E.cephalopus
+11,11,11,1,A11,258688,E.cephalopus,E.cephalopus,Sichuan,0.94,258688,5.05,0.0037,0.36814,131.71,herbivore,Wen Chuan,1933,1933,Sichuan-China,EC,E.cephalopus,E.cephalopus
+12,12,12,1,A12,258689,E.cephalopus,E.cephalopus,Sichuan,1.03,258689,4.88,0.00369,0.36808,146.49,herbivore,Wen Chuan,1933,1933,Sichuan-China,EC,E.cephalopus,E.cephalopus
+13,13,13,1,B1,151859,R.Unicolor,R.Unicolor,Borneo,0.89,151859,6.46,0.0037,0.36866,106.94,herbivore,Saratok River,1908,1908,Borneo-Indonesia,RU,R.Unicolor,R.Unicolor
+14,14,14,1,B2,151860,R.Unicolor,R.Unicolor,Borneo,1.75,151860,5.83,0.0037,0.36843,230.29,herbivore,"Pamukang Bay, Menyngal River",1908,1908,Borneo-Indonesia,RU,R.Unicolor,R.Unicolor
+15,15,15,1,B3,151861,R.Unicolor,R.Unicolor,Borneo,1.79,151861,3.46,0.00369,0.36757,212.51,herbivore,"Pamukang Bay, Susulang River",1908,1908,Borneo-Indonesia,RU,R.Unicolor,R.Unicolor
+16,16,16,1,B4,197694,R.Unicolor,R.Unicolor,Borneo,1.11,196894,6.98,0.0037,0.36885,146.66,herbivore,Domaring River,1913,1913,Borneo-Indonesia,RU,R.Unicolor,R.Unicolor
+17,17,17,1,B5,197695,R.Unicolor,R.Unicolor,Borneo,0.91,197695,3.91,0.00369,0.36773,126.58,herbivore,"Sangata River, S Bank",1913,1913,Borneo-Indonesia,RU,R.Unicolor,R.Unicolor
+18,18,18,1,B6,197696,R.Unicolor,R.Unicolor,Borneo,0.62,197696,4.87,0.00369,0.36808,89.85,herbivore,Kalindakkan,1913,1913,Borneo-Indonesia,RU,R.Unicolor,R.Unicolor
+19,19,19,1,B7,197697,R.Unicolor,R.Unicolor,Borneo,0.99,197697,5.25,0.0037,0.36822,134.49,herbivore,Kalindakkan,1913,1913,Borneo-Indonesia,RU,R.Unicolor,R.Unicolor
+20,20,20,1,B8,63474,C.elaphus,C.elaphus,NIndia,1.53,63474,3.13,0.00369,0.36745,148.49,herbivore,Nagmarg,1895,1895,Jammu and Kashmir-India,CE,C.elaphus,C.elaphus
+21,21,21,1,B9,198673,C.elaphus,C.elaphus,NIndia,1.3,198673,2.41,0.00369,0.36718,139.58,herbivore,Probably E End of Valley,1913,1913,Jammu and Kashmir-India,CE,C.elaphus,C.elaphus
+22,22,22,1,B10,293120,R.tarandus,R.tarandus,Alaska,1,293120,6.02,0.0037,0.3685,95.04,herbivore,"Point Barrow, 25 Mi S",1951,1951,Alaska-US,RT,R.tarandus,R.tarandus
+23,23,23,1,B11,293121,R.tarandus,R.tarandus,Alaska,1.17,293121,5.39,0.0037,0.36827,162.22,herbivore,"Point Barrow, 25 Mi S",1951,1951,Alaska-US,RT,R.tarandus,R.tarandus
+24,24,24,1,B12,293122,R.tarandus,R.tarandus,Alaska,0.9,293122,3.1,0.00369,0.36744,88.3,herbivore,"Point Barrow, 200 Mi SW; Driftwood, Utukok River",1951,1951,Alaska-US,RT,R.tarandus,R.tarandus
+25,25,25,1,C1,294030,R.tarandus,R.tarandus,Alaska,1.04,294030,2.18,0.00368,0.3671,140.02,herbivore,"Point Barrow, Near",1950,1950,Alaska-US,RT,R.tarandus,R.tarandus
+26,26,26,1,C2,294031,R.tarandus,R.tarandus,Alaska,0.73,294031,1.65,0.00368,0.36691,98.93,herbivore,"Point Barrow, Near",1950,1950,Alaska-US,RT,R.tarandus,R.tarandus
+27,27,27,1,C3,294032,R.tarandus,R.tarandus,Alaska,0.8,294032,0.48,0.00368,0.36648,104.59,herbivore,"Point Barrow, Near",1950,1950,Alaska-US,RT,R.tarandus,R.tarandus
+28,28,28,1,C4,158524,O. virginianus,O. virginianus,New Mexico,0.98,158524,5,0.00369,0.36813,135.74,herbivore,Mogollon Mountains,1906,1906,New Mexico-US,OV,O. virginianus,O. virginianus
+29,29,29,1,C5,157134,O. virginianus,O. virginianus,New Mexico,0.71,157134,3.36,0.00369,0.36753,99.47,herbivore,Animas Mountains,1908,1908,New Mexico-US,OV,O. virginianus,O. virginianus
+30,30,30,1,C6,157636,O. virginianus,O. virginianus,New Mexico,0.86,157636,4.18,0.00369,0.36783,115.26,herbivore,"Gila National Forest, Nigreta River",1908,1908,New Mexico-US,OV,O. virginianus,O. virginianus
+31,31,31,1,C7,128752,O. virginianus,O. virginianus,New Mexico,0.83,128752,4.09,0.00369,0.3678,120.2,herbivore,Pecos Baldy,1903,1903,New Mexico-US,OV,O. virginianus,O. virginianus
+32,32,32,1,C8,131569,O. virginianus,O. virginianus,New Mexico,0.98,131569,4.47,0.00369,0.36793,126.98,herbivore,Manzano Mountains,1903,1903,New Mexico-US,OV,O. virginianus,O. virginianus
+33,33,33,1,C9,135060,O. virginianus,O. virginianus,New Mexico,0.46,135060,6.18,0.0037,0.36856,62.54,herbivore,Gallinas Mountains,1904,1904,New Mexico-US,OV,O. virginianus,O. virginianus
+34,34,34,1,C10,21351,Mazama,M. chunyi,Peru,1,21351,2.42,0.00369,0.36719,14.68,herbivore,ayacucho,1965,1965,Peru & Venezuela,Ma,Mazama,Mazama
+35,35,35,1,C11,2165,Mazama,M. chunyi,Peru,1,2165,2.66,0.00369,0.36727,14.58,herbivore,cuzco,1990,NA,Peru & Venezuela,Ma,Mazama,Mazama
+36,36,36,1,C12,13029,Mazama,M. chunyi,Peru,1.3,13029,3.51,0.00369,0.36758,21.08,herbivore,puno,1986,1986,Peru & Venezuela,Ma,Mazama,Mazama
+37,37,37,1,D1,2168,Mazama,M. americana,Peru,1.2,2168,6.83,0.0037,0.36879,15.48,herbivore,puerto inca,1990,NA,Peru & Venezuela,Ma,Mazama,Mazama
+38,38,38,1,D2,254917,M.moschata,M.moschata,Sichuan,1.25,254917,10.37,0.00371,0.37009,177.49,omnivore,Suifu,1929,1929,Sichuan-China,MM,M.moschata,M.moschata
+39,39,39,1,D3,254918,M.moschata,M.moschata,Sichuan,0.5,254918,10.28,0.00371,0.37005,72.9,omnivore,Suifu,1929,1929,Sichuan-China,MM,M.moschata,M.moschata
+40,40,40,1,D4,255528,M.moschata,M.moschata,Sichuan,0.99,255528,6.41,0.0037,0.36864,139.75,omnivore,Suifu,1930,1930,Sichuan-China,MM,M.moschata,M.moschata
+41,41,41,1,D5,240996,M.moschata,M.moschata,Sichuan,0.74,240996,8.06,0.00371,0.36925,104.6,omnivore,Suifu,1925,1925,Sichuan-China,MM,M.moschata,M.moschata
+42,42,42,1,D6,258352,M.moschata,M.moschata,Sichuan,1.21,258352 a,6.5,0.0037,0.36867,175.54,omnivore,Sichuan,1932,1932,Sichuan-China,MM,M.moschata,M.moschata
+43,43,43,1,D7,254588,M.moschata,M.moschata,Sichuan,0.67,254588,7.97,0.00371,0.36921,99.45,omnivore,Suifu,1929,1929,Sichuan-China,MM,M.moschata,M.moschata
+44,44,44,1,D8,151876,P.hermaphroditus,P.hermaphroditus,Borneo,0.5,151876,9.13,0.00371,0.36963,49.78,omnivore,Klumpang Bay,1908,1908,Borneo-Indonesia,PH,P.hermaphroditus,P.hermaphroditus
+45,45,45,1,D9,196618,P.hermaphroditus,P.hermaphroditus,Borneo,0.51,196618,8.48,0.00371,0.3694,72.5,omnivore,Segah River,1912,1912,Borneo-Indonesia,PH,P.hermaphroditus,P.hermaphroditus
+46,46,46,1,D10,196619,P.hermaphroditus,P.hermaphroditus,Borneo,0.5,196619,7.6,0.0037,0.36908,68.99,omnivore,"Segah River, Long Min Jaw",1912,1912,Borneo-Indonesia,PH,P.hermaphroditus,P.hermaphroditus
+47,47,47,1,D11,197241,P.hermaphroditus,P.hermaphroditus,Borneo,0.48,197241,7.37,0.0037,0.36899,69.84,omnivore,"Sengata River, S Bank",1913,1913,Borneo-Indonesia,PH,P.hermaphroditus,P.hermaphroditus
+48,48,48,1,D12,197248,P.hermaphroditus,P.hermaphroditus,Borneo,0.4,197248,9.8,0.00371,0.36988,61.03,omnivore,Tandjong Seglu,1913,1913,Borneo-Indonesia,PH,P.hermaphroditus,P.hermaphroditus
+49,49,49,1,E1,198059,P.hermaphroditus,P.hermaphroditus,Borneo,0.2,198059,9.82,0.00371,0.36989,26.95,omnivore,Sungai Karangan,1913,1913,Borneo-Indonesia,PH,P.hermaphroditus,P.hermaphroditus
+50,50,50,1,E2,173301,M.foina,M.foina,NIndia,0.72,173301,6.36,0.0037,0.36862,102.69,omnivore,"Nij Nai Nulla, Sind Valley",1910,1910,Jammu and Kashmir-India,MF,M.foina,M.foina
+51,51,51,1,E3,173302,M.foina,M.foina,NIndia,0.5,173302,5.8,0.0037,0.36842,72.62,omnivore,"Tronkol, Wangat Valley",1910,1910,Jammu and Kashmir-India,MF,M.foina,M.foina
+52,52,52,1,E4,173303,M.foina,M.foina,NIndia,0.52,173303,6.2,0.0037,0.36857,78.52,omnivore,"Tronkol, Wangat Valley",1910,1910,Jammu and Kashmir-India,MF,M.foina,M.foina
+53,53,53,1,E5,173304,M.foina,M.foina,NIndia,0.36,173304,5.48,0.0037,0.3683,54.07,omnivore,"Tronkol, Wangat Valley",1910,1910,Jammu and Kashmir-India,MF,M.foina,M.foina
+54,54,54,1,E6,201065,M.foina,M.foina,NIndia,0.84,201065,5.79,0.0037,0.36842,122.69,omnivore,Dannour ,1915,1915,Jammu and Kashmir-India,MF,M.foina,M.foina
+55,55,55,1,E7,201066,M.foina,M.foina,NIndia,0.58,201066,6.42,0.0037,0.36865,79.65,omnivore,"Dandwar, Pir Panjal Range",1915,1915,Jammu and Kashmir-India,MF,M.foina,M.foina
+56,56,56,1,E8,201067,M.foina,M.foina,NIndia,0.99,201067,5.35,0.0037,0.36825,140.58,omnivore,"Dandwar, Pir Panjal Range",1915,1915,Jammu and Kashmir-India,MF,M.foina,M.foina
+57,57,57,1,E9,276128,V.vulpes,V.vulpes,Alaska,1.01,276128,5.7,0.0037,0.36838,142.32,omnivore,Naknek Lake,1945,1945,Alaska-US,VV,V.vulpes,V.vulpes
+58,58,58,1,E10,294410,V.vulpes,V.vulpes,Alaska,0.49,294410,6.79,0.0037,0.36878,67.96,omnivore,Chandler Lake,1952,1952,Alaska-US,VV,V.vulpes,V.vulpes
+59,59,59,1,E11,294411,V.vulpes,V.vulpes,Alaska,0.78,294411,7.82,0.00371,0.36916,111.73,omnivore,Chandler Lake,1952,1952,Alaska-US,VV,V.vulpes,V.vulpes
+60,60,60,1,E12,294412,V.vulpes,V.vulpes,Alaska,0.77,294412,7,0.0037,0.36886,108.91,omnivore,Chandler Lake,1952,1952,Alaska-US,VV,V.vulpes,V.vulpes
+61,61,61,1,F1,276127,V.vulpes,V.vulpes,Alaska,0.49,276127,7.36,0.0037,0.36899,71.93,omnivore,"Naknek Lake, Alaska peninsula",1945,1945,Alaska-US,VV,V.vulpes,V.vulpes
+62,62,62,1,F2,118625,P.lotor,P.lotor,New Mexico,0.96,11825,9.93,0.00371,0.36993,142.01,omnivore,Santa Rosa,1902,1902,New Mexico-US,PL,P.lotor,P.lotor
+63,63,63,1,F3,127592,P.lotor,P.lotor,New Mexico,0.94,127592,11.5,0.00372,0.3705,141.34,omnivore,Santa Rosa,1903,1903,New Mexico-US,PL,P.lotor,P.lotor
+64,64,64,1,F4,132483,P.lotor,P.lotor,New Mexico,0.87,132483,10.45,0.00371,0.37012,128.68,omnivore,Rinconada,1904,1904,New Mexico-US,PL,P.lotor,P.lotor
+65,65,65,1,F5,158241,P.lotor,P.lotor,New Mexico,1.38,158241,13.58,0.00373,0.37126,203.05,omnivore,"Deming, 8 Mi E",1908,1908,New Mexico-US,PL,P.lotor,P.lotor
+66,66,66,1,F6,160601,P.lotor,P.lotor,New Mexico,1.03,160601,10.27,0.00371,0.37005,142.16,omnivore,"Magdalena Mountains, Water Canyon",1909,1909,New Mexico-US,PL,P.lotor,P.lotor
+67,67,67,1,F7,158243,P.lotor,P.lotor,New Mexico,0.69,158243,12.9,0.00372,0.37101,100.45,omnivore,Red Rock,1908,1908,New Mexico-US,PL,P.lotor,P.lotor
+68,68,68,1,F8,2336,E.Barbara,E.Barbara,Peru,2.2,2336,6.88,0.0037,0.36881,271.47,omnivore,pasco,1997,1997,Peru & Venezuela,EB,E.Barbara,E.Barbara
+69,69,69,1,F9,12674,E.Barbara,E.Barbara,Peru,2.39,12674,9.16,0.00371,0.36965,382.11,omnivore,oxapampa,1990,NA,Peru & Venezuela,EB,E.Barbara,E.Barbara
+70,70,70,1,F10,5846,E.Barbara,E.Barbara,Peru,2.53,5846,6.86,0.0037,0.36881,418.14,omnivore,pasco,1991,1991,Peru & Venezuela,EB,E.Barbara,E.Barbara
+71,71,71,1,F11,7206,E.Barbara,E.Barbara,Peru,2.17,7206,7.24,0.0037,0.36895,336.12,omnivore,san martin,1990,NA,Peru & Venezuela,EB,E.Barbara,E.Barbara
+72,72,72,1,F12,2155,E.Barbara,E.Barbara,Peru,2.24,2155 a,6.72,0.0037,0.36876,296,omnivore,cajamarca,1990,NA,Peru & Venezuela,EB,E.Barbara,E.Barbara
+73,73,73,1,G1,9442,E.Barbara,E.Barbara,Peru,1.1,9442,8.81,0.00371,0.36952,151.97,omnivore,,1994,1994,Peru & Venezuela,EB,E.Barbara,E.Barbara
+74,74,74,1,G2,276055,P.vitulina,P.vitulina,Alaska,0.53,276055,17.67,0.00374,0.37275,69.25,piscivore,Bering Sea,1947,1947,Alaska-US,PV,P.vitulina,P.vitulina
+75,75,75,1,G3,276056,P.vitulina,P.vitulina,Alaska,0.71,276056,18.61,0.00374,0.3731,97.83,piscivore,bering Sea,1947,1947,Alaska-US,PV,P.vitulina,P.vitulina
+76,76,76,1,G4,276057,P.vitulina,P.vitulina,Alaska,1.49,276057,17.96,0.00374,0.37286,203.97,piscivore,Bering Sea,1947,1947,Alaska-US,PV,P.vitulina,P.vitulina
+77,77,77,1,G5,276365,P.vitulina,P.vitulina,Alaska,0.49,276365,18.19,0.00374,0.37294,72.32,piscivore,bering Sea,1947,1947,Alaska-US,PV,P.vitulina,P.vitulina
+78,78,78,1,G6,258349,U.thibetanus,U.thibetanus,Sichuan,0.62,258349,5.63,0.0037,0.36836,88.48,bear,"West China Mountains, Chengtu",1933,1933,Sichuan-China,UT,U.thibetanus,U.thibetanus.C
+79,79,79,1,G7,258352,U.thibetanus,U.thibetanus,Sichuan,0.75,258430,2.96,0.00369,0.36738,141.05,bear,Kuan Shien,1933,1933,Sichuan-China,UT,U.thibetanus,U.thibetanus.C
+80,80,80,1,G8,239645,U.thibetanus,U.thibetanus,Sichuan,1.09,239645,2.85,0.00369,0.36734,153.92,bear,Wen Chuan,1933,1933,Sichuan-China,UT,U.thibetanus,U.thibetanus.C
+81,81,81,1,G9,258646,U.thibetanus,U.thibetanus,Sichuan,1.52,258646,5.25,0.0037,0.36822,221.02,bear,Wei Chow,1933,1933,Sichuan-China,UT,U.thibetanus,U.thibetanus.C
+82,82,82,1,G10,259011,U.thibetanus,U.thibetanus,Sichuan,0.4,259011,6.19,0.0037,0.36856,57.2,bear,Wen Chuan,1934,1934,Sichuan-China,UT,U.thibetanus,U.thibetanus.C
+83,83,83,1,G11,20119,U.thibetanus,U.thibetanus,NIndia,1.09,20119,4.24,0.00369,0.36785,148.62,bear,Lalab,1891,1891,Jammu and Kashmir-India,UT,U.thibetanus,U.thibetanus
+84,84,84,1,G12,21844,U.thibetanus,U.thibetanus,NIndia,0.9,21844,2.96,0.00369,0.36738,130.88,bear,Lalab,1891,1891,Jammu and Kashmir-India,UT,U.thibetanus,U.thibetanus
+85,85,85,1,H1,21845,U.thibetanus,U.thibetanus,NIndia,0.92,21845,4.02,0.00369,0.36777,129.67,bear,Lalab,1891,1891,Jammu and Kashmir-India,UT,U.thibetanus,U.thibetanus
+86,86,86,1,H2,84092,U.thibetanus,U.thibetanus,NIndia,0.91,84092,0.95,0.00368,0.36665,128.29,bear,Per Panjal Range,1897,1897,Jammu and Kashmir-India,UT,U.thibetanus,U.thibetanus
+87,87,87,1,H3,84093,U.thibetanus,U.thibetanus,NIndia,0.89,84093,3.82,0.00369,0.3677,128.29,bear,Per Panjal Range,1897,1897,Jammu and Kashmir-India,UT,U.thibetanus,U.thibetanus
+88,88,88,1,H4,155575,T.ornatus,T.ornatus,Venezuela,0.83,155575,3.29,0.00369,0.3675,122.32,bear,"Montanas, Merida",1908,1908,Peru & Venezuela,TO,T.ornatus.V,T.ornatus.V
+89,89,89,1,H5,168115,T.ornatus,T.ornatus,Venezuela,0.52,168115,4.43,0.00369,0.36792,82.73,bear,"La Gulata Mountains, La Culata Mountains, Merida",1907,1907,Peru & Venezuela,TO,T.ornatus.V,T.ornatus.V
+90,90,90,1,H6,170656,T.ornatus,T.ornatus,Venezuela,1.08,170656,4.91,0.00369,0.3681,153.56,bear,"Rubio Mountains,Merida",1910,1910,Peru & Venezuela,TO,T.ornatus.V,T.ornatus.V
+91,91,91,1,H7,171011,T.ornatus,T.ornatus,Venezuela,0.89,171011,4.57,0.00369,0.36797,120.02,bear,Merida,1910,1910,Peru & Venezuela,TO,T.ornatus.V,T.ornatus.V
+92,92,92,1,H8,OXA002,T.ornatus,T.ornatus,Peru,1.38,OXA002,4.96,0.00369,0.36811,187.95,bear,oxapampa,2017,2017,Peru & Venezuela,TO,T.ornatus,T.ornatus.P
+93,93,93,1,H9,AM001,T.ornatus,T.ornatus,Peru,2.49,AM001,3.39,0.00369,0.36754,343.07,bear,amazonas,2002,2002,Peru & Venezuela,TO,T.ornatus,T.ornatus.P
+94,94,94,1,H10,OXA001,T.ornatus,T.ornatus,Peru,2.13,OXA001,3.01,0.00369,0.3674,277.08,bear,oxapampa,2017,2017,Peru & Venezuela,TO,T.ornatus,T.ornatus.P
+95,95,95,1,H11,22965,T.ornatus,T.ornatus,Peru,2.14,22965,4.93,0.00369,0.3681,207.64,bear,huanuco,2006,2006,Peru & Venezuela,TO,T.ornatus,T.ornatus.P
+96,96,96,1,H12,2966,T.ornatus,T.ornatus,Peru,2.93,2966,6.79,0.0037,0.36878,149.43,bear,huanuco,2006,2006,Peru & Venezuela,TO,T.ornatus,T.ornatus.P
+97,97,97,1,A1,T001,T.ornatus,T.ornatus,Peru,1.15,T001,4.08,0.00369,0.36779,149.88,bear,,1990,NA,Peru & Venezuela,TO,T.ornatus,T.ornatus.P
+98,99,99,2,A3,197254,U.malayanus,U.malayanus,Borneo,0.54,197254,7.44,0.0037,0.36902,78.12,bear,Tandjong Seglu,1913,1913,Borneo-Indonesia,UL,U.malayanus,U.malayanus
+99,100,100,2,A4,198713,U.malayanus,U.malayanus,Borneo,0.64,198713,4.76,0.00369,0.36804,90.1,bear,Sungai Mahakam,1914,1914,Borneo-Indonesia,UL,U.malayanus,U.malayanus
+100,101,101,2,A5,198714,U.malayanus,U.malayanus,Borneo,0.36,198714,6.17,0.0037,0.36855,54.14,bear,Tandjong Seglu,1913,1913,Borneo-Indonesia,UL,U.malayanus,U.malayanus
+101,102,102,2,A6,198715,U.malayanus,U.malayanus,Borneo,0.21,198715,6.62,0.0037,0.36872,27.63,bear,Sungai Djambajan,1914,1914,Borneo-Indonesia,UL,U.malayanus,U.malayanus
+102,103,103,2,A7,286411,U.americanus,U.americanus,Alaska,0.88,286411,5.29,0.0037,0.36823,131.51,bear,"Iniskin Bay, North Side Of Cook Inlet",1950,1950,Alaska-US,UA,U.americanus,U.americanus.A
+103,104,104,2,A8,286832,U.americanus,U.americanus,Alaska,0.51,286832,4.52,0.00369,0.36795,76.74,bear,"Iniskin Bay, Cook Inlet",1950,1950,Alaska-US,UA,U.americanus,U.americanus.A
+104,105,105,2,A9,292927,U.americanus,U.americanus,Alaska,1.03,292927,3.78,0.00369,0.36768,149.43,bear,"Inukposukruk Creek, Near Head Of John R. Brooks Range",1951,1951,Alaska-US,UA,U.americanus,U.americanus.A
+105,106,106,2,A10,224500,U.americanus,U.americanus,New Mexico,1.09,224500,4.97,0.00369,0.36812,160.9,bear,Rociada,1916,1916,New Mexico-US,UA,U.americanus,U.americanus.NM
+106,107,107,2,A11,224501,U.americanus,U.americanus,New Mexico,1.04,224501,4.8,0.00369,0.36805,150.34,bear,Mescalero,1916,1916,New Mexico-US,UA,U.americanus,U.americanus.NM
+107,108,108,2,A12,231353,U.americanus,U.americanus,New Mexico,1.19,231353,6.69,0.0037,0.36875,167.78,bear,"Luna, Lincoln County",1918,1918,New Mexico-US,UA,U.americanus,U.americanus.NM
+108,109,109,2,B1,231356,U.americanus,U.americanus,New Mexico,0.6,231356,5.26,0.0037,0.36822,91.02,bear,"Monticello, Sierra County",1918,1918,New Mexico-US,UA,U.americanus,U.americanus.NM
+109,110,110,2,B2,231358,U.americanus,U.americanus,New Mexico,1.59,231358,6.43,0.0037,0.36865,236.91,bear,"Magdalena, Socorro County",1918,1918,New Mexico-US,UA,U.americanus,U.americanus.NM
+110,111,111,2,B3,231361,U.americanus,U.americanus,New Mexico,1.07,231361,6.72,0.0037,0.36876,146.21,bear,Senorito,1918,1918,New Mexico-US,UA,U.americanus,U.americanus.NM
+111,112,112,2,B4,292035,U.arctos,U.arctos,Alaska,1.65,292035,5.72,0.0037,0.36839,240.56,bear,"Brooks Range, Savioyuk Valley",1950,1950,Alaska-US,UR,U.arctos,U.arctos.A
+112,113,113,2,B5,293123,U.arctos,U.arctos,Alaska,1.21,293123,6.81,0.0037,0.36879,170.99,bear,"Point Barrow, 115 Mi SE, Titalvk",1951,1951,Alaska-US,UR,U.arctos,U.arctos.A
+113,114,114,2,B6,293124,U.arctos,U.arctos,Alaska,0.58,293124,8.21,0.00371,0.3693,83.65,bear,"Anaktiktoak Creek, Anaktuyuk Pass, Brooks Range",1951,1951,Alaska-US,UR,U.arctos,U.arctos.A
+114,115,115,2,B7,293125,U.arctos,U.arctos,Alaska,1.49,293125,4.43,0.00369,0.36792,211.3,bear,"Anaktiktork Creek, Anaktuvuk Pass, Brooks Range",1951,1951,Alaska-US,UR,U.arctos,U.arctos.A
+115,116,116,2,B8,293782,U.arctos,U.arctos,Alaska,1.52,293782,4.91,0.00369,0.3681,214.96,bear,"Chandalar Valley, Arctic Village",1951,1951,Alaska-US,UR,U.arctos,U.arctos.A
+116,117,117,2,B9,294029,U.arctos,U.arctos,Alaska,1.23,294029,4,0.00369,0.36776,168.7,bear,"Chandalar River, 4 Mi, Arctic Village",1951,1951,Alaska-US,UR,U.arctos,U.arctos.A
+117,118,118,2,B10,294078,U.arctos,U.arctos,Alaska,1.1,294078,3.71,0.00369,0.36766,160.9,bear,"John River, 10 Mi N Hunt Fork, Timberline",1969,1969,Alaska-US,UR,U.arctos,U.arctos.A
+118,119,119,2,B11,286413,U.arctos,U.arctos,Alaska,1.01,286413,14.7,0.00373,0.37167,142.54,bear,"Cook's Inlet, Chinitna Bay",1950,1950,Alaska-US,UR,U.arctos,U.arctos.A
+119,120,120,2,B12,223393,U.arctos,U.arctos,New Mexico,1.33,223393,7.96,0.00371,0.36921,192.07,bear,"Black Range, 25 Mi NW Of Chloride. Sierra County",1916,1916,New Mexico-US,UR,U.arctos,U.arctos.NM
+120,121,121,2,C1,223394,U.arctos,U.arctos,New Mexico,0.89,223394,8.47,0.00371,0.3694,129.21,bear,"Black Range, 25 Mi NW Of Chloride. Sierra County",1916,1916,New Mexico-US,UR,U.arctos,U.arctos.NM
+121,122,122,2,C2,223395,U.arctos,U.arctos,New Mexico,1.06,223395,8.36,0.00371,0.36935,154.02,bear,"Black Range, 25 Mi NW Of Chloride. Sierra County",1916,1916,New Mexico-US,UR,U.arctos,U.arctos.NM
+122,123,123,2,C3,223396,U.arctos,U.arctos,New Mexico,0.98,223396,6.88,0.0037,0.36881,143,bear,black range,1916,1916,New Mexico-US,UR,U.arctos,U.arctos.NM
+123,124,124,2,C4,231286,U.arctos,U.arctos,New Mexico,1.47,231286,9.47,0.00371,0.36976,208.56,bear,"Taos, 20 Mi SE On Rio Chiquito",1918,1918,New Mexico-US,UR,U.arctos,U.arctos.NM
+124,125,125,2,C5,231287,U.arctos,U.arctos,New Mexico,0.73,231287,10.55,0.00372,0.37015,106.22,bear,"Taos, 20 Mi SE On Rio Chiquito",1918,1918,New Mexico-US,UR,U.arctos,U.arctos.NM
+125,126,126,2,C6,235098,U.arctos,U.arctos,New Mexico,1.31,235098,8.75,0.00371,0.3695,177.41,bear,"Fairview, 35 Mi NE",1920,1920,New Mexico-US,UR,U.arctos,U.arctos.NM
+126,127,127,2,C7,224496,U.arctos,U.arctos,New Mexico,0.98,224496,7.19,0.0037,0.36893,143.91,bear,"cuba, sandoval county",1916,1916,New Mexico-US,UR,U.arctos,U.arctos.NM
+127,128,128,2,C8,21691,U.arctos,U.arctos,NIndia,0.93,21691,2.9,0.00369,0.36736,120.94,bear,Nag Marg,1893,1893,Jammu and Kashmir-India,UR,U.arctos,U.arctos
+128,129,129,2,C11,512167,U.maritimus,U.maritimus,Alaska,1.65,512167,20.86,0.00375,0.37392,237.82,bear,"Point Hope and Russian Coast, Ice Pack Between",1971,1971,Alaska-US,UM,U.maritimus,U.maritimus
+129,130,130,2,C12,512168,U.maritimus,U.maritimus,Alaska,1.35,512168,21.27,0.00375,0.37406,192.53,bear,"Point Hope and Russian Coast, Ice Pack Between",1971,1971,Alaska-US,UM,U.maritimus,U.maritimus
+130,131,131,2,D1,512169,U.maritimus,U.maritimus,Alaska,1.17,512169,21.07,0.00375,0.37399,165.95,bear,"Point Hope and Russian Coast, Ice Pack Between",1971,1971,Alaska-US,UM,U.maritimus,U.maritimus
+131,132,132,2,D2,512170,U.maritimus,U.maritimus,Alaska,1.62,512170,22.3,0.00376,0.37444,235.54,bear,"Point Hope and Russian Coast, Ice Pack Between",1971,1971,Alaska-US,UM,U.maritimus,U.maritimus
+132,133,133,2,D3,512171,U.maritimus,U.maritimus,Alaska,0.99,512171,20.56,0.00375,0.37381,139.32,bear,"Point Hope and Russian Coast, Ice Pack Between",1971,1971,Alaska-US,UM,U.maritimus,U.maritimus
+133,134,134,2,D4,512172,U.maritimus,U.maritimus,Alaska,0.9,512172,20.83,0.00375,0.37391,125.08,bear,"Barter Island, 15 Mi N",1975,1975,Alaska-US,UM,U.maritimus,U.maritimus
+134,135,135,2,D5,258556,C.temminckii,C.temminckii,Sichuan,0.49,254795,4.98,0.00369,0.36812,63.83,carnivore,Mupin,1929,1929,Sichuan-China,CT,C.temminckii,C.temminckii
+135,136,136,2,D6,258694,C.temminckii,C.temminckii,Sichuan,0.86,258694,4.42,0.00369,0.36792,120.48,carnivore,Wen Chuan,1933,1933,Sichuan-China,CT,C.temminckii,C.temminckii
+136,137,137,2,D7,259016,C.temminckii,C.temminckii,Sichuan,0.98,259016,5.13,0.0037,0.36818,139.32,carnivore,Wen Chuan,1934,1934,Sichuan-China,CT,C.temminckii,C.temminckii
+137,138,138,2,D8,259012,C.temminckii,C.temminckii,Sichuan,0.48,259012,7.01,0.0037,0.36886,66.14,carnivore,Wen Chuan,1934,1934,Sichuan-China,CT,C.temminckii,C.temminckii
+138,139,139,2,D9,153846,P.bengalensis,P.bengalensis,Borneo,0.71,153846,8.4,0.00371,0.36937,101.15,carnivore,"Kendawangan River, Lanchut",1908,1908,Borneo-Indonesia,PB,P.bengalensis,P.bengalensis.B
+139,140,140,2,D10,196601,P.bengalensis,P.bengalensis,Borneo,0.21,196601,7.17,0.0037,0.36892,30.82,carnivore,Labuan Bimi,1913,1913,Borneo-Indonesia,PB,P.bengalensis,P.bengalensis.B
+140,141,141,2,D11,198055,P.bengalensis,P.bengalensis,Borneo,0.62,198055,10.37,0.00371,0.37009,88.26,carnivore,"Samarinda, N Bank",1913,1913,Borneo-Indonesia,PB,P.bengalensis,P.bengalensis.B
+141,142,142,2,D12,198056,P.bengalensis,P.bengalensis,Borneo,1.24,198056,9.92,0.00371,0.36992,158.61,carnivore,"Samarinda, N Bank",1913,1913,Borneo-Indonesia,PB,P.bengalensis,P.bengalensis.B
+142,143,143,2,E1,198057,P.bengalensis,P.bengalensis,Borneo,1.04,198057,9.8,0.00371,0.36988,145.29,carnivore,Sungai Karangan,1913,1913,Borneo-Indonesia,PB,P.bengalensis,P.bengalensis.B
+143,144,144,2,E2,62108,P.bengalensis,P.bengalensis,NIndia,0.96,62108,5.3,0.0037,0.36824,127.37,carnivore,valley of kasmir,1905,1905,Jammu and Kashmir-India,PB,P.bengalensis,P.bengalensis.I
+144,145,145,2,E3,173334,P.bengalensis,P.bengalensis,NIndia,0.92,173334,5.89,0.0037,0.36845,110.82,carnivore,Hyhama,1911,1911,Jammu and Kashmir-India,PB,P.bengalensis,P.bengalensis.I
+145,146,146,2,E4,173335,P.bengalensis,P.bengalensis,NIndia,1.16,173335,5.82,0.0037,0.36843,139.78,carnivore,"Hyhama, Valleey of Kashmir",1911,1911,Jammu and Kashmir-India,PB,P.bengalensis,P.bengalensis.I
+146,147,147,2,E5,201069,P.bengalensis,P.bengalensis,NIndia,0.74,201069,5.31,0.0037,0.36824,103.46,carnivore,"Dandwar, Pir Panjal Range",1915,1915,Jammu and Kashmir-India,PB,P.bengalensis,P.bengalensis.I
+147,148,148,2,E6,201070,P.bengalensis,P.bengalensis,NIndia,1.16,201070,5.31,0.0037,0.36824,154.02,carnivore,Dandwar,1915,1915,Jammu and Kashmir-India,PB,P.bengalensis,P.bengalensis.I
+148,149,149,2,E7,295123,C.lupus,C.lupus,Alaska,0.43,295123,5.15,0.0037,0.36818,64.75,carnivore,Umiat,1952,1952,Alaska-US,CL,C.lupus,C.lupus
+149,150,150,2,E8,195124,C.lupus,C.lupus,Alaska,0.73,195124,6.1,0.0037,0.36853,108.06,carnivore,Umiat,1952,1952,Alaska-US,CL,C.lupus,C.lupus
+150,151,151,2,E9,195125,C.lupus,C.lupus,Alaska,0.52,195125,4.86,0.00369,0.36808,73.98,carnivore,Umiat,1952,1952,Alaska-US,CL,C.lupus,C.lupus
+151,152,152,2,E10,292928,C.lupus,C.lupus,Alaska,1.76,292928,6.89,0.0037,0.36882,224.11,carnivore,"Ramanzof, Schrader Lake",1952,1952,Alaska-US,CL,C.lupus,C.lupus
+152,153,153,2,E11,294403,C.lupus,C.lupus,Alaska,0.6,294403,6.86,0.0037,0.36881,87.8,carnivore,Arctic Village,1951,1951,Alaska-US,CL,C.lupus,C.lupus
+153,154,154,2,E12,271894,C.lupus,C.lupus,Alaska,0.78,271894,5.98,0.0037,0.36849,105.76,carnivore,"Seward Peninsula, Etchepuk River; Golovin Reindeer Station",1941,1941,Alaska-US,CL,C.lupus,C.lupus
+154,155,155,2,F1,274063,C.lupus,C.lupus,Alaska,1.26,274063,12.17,0.00372,0.37074,173.74,carnivore,Mount Mckinley National Park,1943,1943,Alaska-US,CL,C.lupus,C.lupus
+155,156,156,2,F2,276126,C.lupus,C.lupus,Alaska,0.99,276126,8.04,0.00371,0.36924,136.11,carnivore,"Naknek Lake, Alaska Peninsula",1945,1945,Alaska-US,CL,C.lupus,C.lupus
+156,157,157,2,F3,324994,C.lupus,C.lupus,Alaska,0.84,324994,6.6,0.0037,0.36871,118.64,carnivore,"Anchorage, Arctic Health Research Center",1962,1962,Alaska-US,CL,C.lupus,C.lupus
+157,158,158,2,F4,275163,C.lupus,C.lupus,Alaska,0.64,275163,6.23,0.0037,0.36858,93.79,carnivore,"Teller, 12 Mi From",1953,1953,Alaska-US,CL,C.lupus,C.lupus
+158,159,159,2,F5,223494,L.rufus,L.rufus,New Mexico,1.37,223494,7.97,0.00371,0.36921,177.41,carnivore,Luna,1916,1916,New Mexico-US,LR,L.rufus,L.rufus
+159,160,160,2,F6,223495,L.rufus,L.rufus,New Mexico,1.21,223495,7.27,0.0037,0.36896,147.13,carnivore,Luna,1916,1916,New Mexico-US,LR,L.rufus,L.rufus
+160,161,161,2,F7,223496,L.rufus,L.rufus,New Mexico,0.94,223496,6.64,0.0037,0.36873,129.21,carnivore,Luna,1916,1916,New Mexico-US,LR,L.rufus,L.rufus
+161,162,162,2,F8,223514,L.rufus,L.rufus,New Mexico,1.58,223514,8.48,0.00371,0.3694,188.87,carnivore,Abiquiu,1916,1916,New Mexico-US,LR,L.rufus,L.rufus
+162,163,163,2,F9,223527,L.rufus,L.rufus,New Mexico,0.47,223527,7.64,0.0037,0.36909,68.44,carnivore,El Vado,1916,1916,New Mexico-US,LR,L.rufus,L.rufus
+163,164,164,2,F10,223528,L.rufus,L.rufus,New Mexico,1.45,223528,9.79,0.00371,0.36988,181.99,carnivore,El Vado,1916,1916,New Mexico-US,LR,L.rufus,L.rufus
+164,165,165,2,F11,223538,L.rufus,L.rufus,New Mexico,0.76,223538,10.38,0.00371,0.37009,102.08,carnivore,El Vado,1916,1916,New Mexico-US,LR,L.rufus,L.rufus
+165,166,166,4,A1,21692,U.arctos,U.arctos,NIndia,0.45,21692,0.53,0.00368,0.3665,65.03,bear,Krishnagunga range,1893,1893,Jammu and Kashmir-India,UR,U.arctos,U.arctos
+166,167,167,4,A2,199518,M. ursinus,M. ursinus,CIndia,0.71,199518,6.89,0.0037,0.36882,106.07,bear,Madhya Pradesh,1914,1914,Jammu and Kashmir-India,MU,M. ursinus,M. ursinus
