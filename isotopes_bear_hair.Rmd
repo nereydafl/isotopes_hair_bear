@@ -1,0 +1,939 @@
+---
+title: "Isotopes_bear_hair"
+author: "Nere"
+date: "10/24/2019"
+output: html_document
+---
+
+OPEN AND REVIEW 
+```{r, set.seed(123)}
+knitr::opts_chunk$set(cache = T)
+
+hair <- read.csv(file="/Users/nereyda/Documents/isotopos/hair_N15.csv", header=TRUE, sep=",")
+summary(hair)
+```
+
+
+```{r}
+library(lattice) 
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(R2jags)
+```
+
+Adding a ID to species for the graph
+```{r}
+hair$speciesID<-hair$species2
+levels(hair$speciesID) <- c(levels(hair$speciesID), "AM","CE","CL","CT","EB","EC","LR","MU","MF","MM","Ma","OV","PB","PH","PL","PV","RT","RU","TOP","TOV","UA","UR","HM","UM","UT","VV")
+hair$speciesID[hair$speciesID =='A.melanoleuca']<-'AM'
+hair$speciesID[hair$speciesID =='C.elaphus']<-'CE'
+hair$speciesID[hair$speciesID =='C.lupus']<-'CL'
+hair$speciesID[hair$speciesID =='C.temminckii']<-'CT'
+hair$speciesID[hair$speciesID =='E.Barbara']<-'EB'
+hair$speciesID[hair$speciesID =='E.cephalopus']<-'EC'
+hair$speciesID[hair$speciesID =='L.rufus']<-'LR'
+hair$speciesID[hair$speciesID =='M. ursinus']<-'MU'
+hair$speciesID[hair$speciesID =='M.foina']<-'MF'
+hair$speciesID[hair$speciesID =='M.moschata']<-'MM'
+hair$speciesID[hair$speciesID =='Mazama']<-'Ma'
+hair$speciesID[hair$speciesID =='O. virginianus']<-'OV'
+hair$speciesID[hair$speciesID =='P.bengalensis']<-'PB'
+hair$speciesID[hair$speciesID =='P.hermaphroditus']<-'PH'
+hair$speciesID[hair$speciesID =='P.lotor']<-'PL'
+hair$speciesID[hair$speciesID =='P.vitulina']<-'PV'
+hair$speciesID[hair$speciesID =='R.tarandus']<-'RT'
+hair$speciesID[hair$speciesID =='R.Unicolor']<-'RU'
+hair$speciesID[hair$speciesID =='T.ornatus']<-'TOP'
+hair$speciesID[hair$speciesID =='T.ornatus.V']<-'TOV'
+hair$speciesID[hair$speciesID =='U.americanus']<-'UA'
+hair$speciesID[hair$speciesID =='U.arctos']<-'UR'
+hair$speciesID[hair$speciesID =='H.malayanus']<-'HM'
+hair$speciesID[hair$speciesID =='U.maritimus']<-'UM'
+hair$speciesID[hair$speciesID =='U.thibetanus']<-'UT'
+hair$speciesID[hair$speciesID =='V.vulpes']<-'VV'
+
+hair<- droplevels(hair)
+table(hair$speciesID)
+
+#organize levels
+hair$speciesID <- ordered(hair$speciesID,levels=c("CE","RT","OV","EC", "Ma","RU", "VV","PH","PL","EB","MF","MM", "CL","PB","LR","CT","PV", "UA","UT","UR","UM","HM","AM","MU","TOP","TOV"))
+                          
+hair$Diet <- ordered(hair$Diet,levels=c("herbivore","omnivore","carnivore","piscivore", "bear"))
+
+```
+
+#FUGURE 1
+
+##Map
+```{r}
+library(ggplot2)
+theme_set(theme_void() ) # setting background
+
+world_map <- map_data("world")
+a<-c(1:6)
+b<-c("China","USA","Peru","Venezuela", "Indonesia","India")
+
+countries_sampled<-data.frame(a,b)
+names(countries_sampled) <- c("sample","country")
+
+library(dplyr)
+# join to dataset
+map.world_joined <- left_join(world_map, countries_sampled, by = c('region' = 'country'))
+
+map.world_joined <- map.world_joined %>% mutate(fill_flg = ifelse(is.na(sample),F,T))
+head(map.world_joined)
+
+map<-ggplot(map.world_joined, aes( x = long, y = lat, group = group )) +
+  geom_polygon(aes(fill = fill_flg),colour = "white",alpha=0.5) +  scale_fill_manual(values = c("wheat","orange")) +    theme(legend.position = "none",  plot.background=element_rect(fill = "white")) +  coord_sf(ylim = c(-52, 80), xlim = c(-150, 170),datum = NA)
+        
+```
+
+##subset data
+```{r}
+#subset data  for plot
+Indonesia<- hair[ which(hair$region=='Borneo'),] 
+Alaska<- hair[ which(hair$region=='Alaska'),] 
+US<- hair[ which(hair$region=='New Mexico'),] 
+China<- hair[ which(hair$region=='Szechuan'),]
+India<- hair[ which(hair$region=='Jammu and Kashmir'),] 
+SAmerica<- hair[ which(hair$region=='Peru and Venezuela'),] 
+           
+upper<-rbind(Alaska, US,China)
+
+down<-rbind(SAmerica, India, Indonesia)
+down$region <- ordered(down$region,levels=c("Peru and Venezuela","Jammu and Kashmir","Borneo")) #reordering levels
+
+upper<- droplevels(upper)
+down<- droplevels(down)
+
+#set colors manually 
+cols <- c("carnivore" = "#AF601A", "omnivore" = "#E59866", "herbivore" = "#A9DFBF", "bear" = "#ABB2B9","piscivore"="#BF360C")
+```
+
+##ensambling figure
+```{r}
+library(egg)
+###upper figure
+U_diet<-ggplot(upper, aes(speciesID, X15N,colour=Diet)) +  facet_wrap( ~ region, scales="free") +
+stat_summary(fun.data = mean_se, geom = "pointrange",stat = "identity")  + 
+  scale_color_manual(values = cols,labels=c("herbivore","omnivore","carnivore","piscivore","bear")) +
+theme_classic() +
+      labs(x="species", y = expression(paste(delta^15,"N"))) 
+
+#There is only one point for M.ursinus so I'm adding it apart
+F_upper<-U_diet + theme(legend.position="top",strip.background = element_rect(fill = "white", color = "white", size = 1),
+  strip.text = element_text(colour = "black",size=11)) 
+
+#get legend function # run first with legend.position="top" before to change to "none"
+get_legend<-function(myggplot){
+  tmp <- ggplot_gtable(ggplot_build(myggplot))
+  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
+  legend <- tmp$grobs[[leg]]
+  return(legend)
+}
+
+legend<- get_legend(F_upper)
+
+#run again with legend
+F_upper<-U_diet + theme(legend.position="none",strip.background = element_rect(fill = "white", color = "white", size = 1),
+  strip.text = element_text(colour = "black",size=11)) 
+
+####down figure 
+D_diet<-ggplot(down, aes(speciesID, X15N,colour=Diet)) +  facet_wrap( ~ region, scales="free") +
+stat_summary(fun.data = mean_se, geom = "pointrange",stat = "identity")  + 
+  scale_color_manual(values = cols,labels=c("herbivore","omnivore","carnivore","piscivore","bear")) +
+theme_classic()+  labs(x = "species", y = expression(paste(delta^15,"N")))
+
+#There is only one point for M.ursinus so I'm adding it apart
+F_down<- D_diet + theme(legend.position="none",strip.background = element_rect(fill = "white", color = "white", size = 1),
+  strip.text = element_text(colour = "black",size=11)) + geom_point(data = hair[ which(hair$species=="M. ursinus"),], size=2.5,col = "#ABB2B9")
+
+## Combine figures in one
+
+grid.arrange(legend,F_upper, map, F_down, nrow = 4, ncol = 1,heights = c(0.2,1,1.5,1) )
+
+# transparenci is not supported by EPS
+ 
+cairo_ps(file = "map_N15.eps", onefile = FALSE, fallback_resolution = 600)
+grid.arrange(legend,F_upper, map, F_down, nrow = 4, ncol = 1,heights = c(0.2,1,1.5,1) )
+dev.off()
+```
+
+#JAGS
+**Model: ~ SPECIES2 + REGION 
+
+```{r}
+hair2 <- read.csv(file="/Users/nereyda/Documents/Doctoral Thesis/Isotopes/hair_v2.csv", header=TRUE, sep=",")
+M <- glm(X15N ~  species2+region, data = hair2) 
+summary(M)
+```
+
+```{r}
+######################################################
+
+#Specifying the data for JAGs
+X <- model.matrix(~ species2 +region,
+                    data = hair2)
+K <- ncol(X)
+
+win.data <- list(Y    = hair2$X15N,
+                 N    = nrow(hair2),
+                 X    = X,
+                 K   =  K
+                 )
+
+```
+
+```{r}
+#Jags modelling code
+sink("Gauss.txt")
+cat("
+model{
+  #2. Likelihood 
+    for (i in 1:N){  
+      Y[i] ~ dnorm(mu[i],tau)
+      mu[i] <-inprod(beta[],X[i,])  
+    }
+      
+    #1. Prior
+ for (i in 1:K) {
+   beta[i] ~ dnorm(0, 0.01)
+ }
+  sigma ~ dunif(0,10)
+  tau <- 1/(sigma*sigma)
+}
+
+",fill = TRUE)
+
+sink()
+```
+
+```{r}
+#Set the initial values for the betas
+inits <-function(){
+  list(beta=rnorm(0.01,0,0.001),
+       sigma=runif(1,0.001,1)
+  )}
+ 
+#Parameters to estimate
+
+params <- c("beta","sigma")
+```
+
+```{r}
+
+J <- jags(data = win.data,
+           inits = inits,
+           parameters = params,
+           model.file = "Gauss.txt",
+           n.thin = 10,
+           n.chains = 3,
+           n.burnin = 40000,
+           n.iter   = 50000)
+
+#save(J, file="M.RData")
+
+##################
+
+library(MCMCvis)
+
+#load("M.RData")
+
+out <- J$BUGSoutput
+out<-print(out, intervals=c(0.025, 0.975), digits=2)
+
+vars<-c("beta[1]","beta[2]","beta[3]", "beta[4]","beta[5]","beta[6]","beta[7]","beta[8]", "beta[9]","beta[10]","beta[11]","beta[12]","beta[13]", "beta[14]","beta[15]","beta[16]","beta[17]","beta[18]", "beta[19]","beta[20]","beta[21]","beta[22]","beta[23]", "beta[24]","beta[25]","beta[26]","beta[27]","beta[28]", "beta[29]","beta[30]","beta[31]")
+OUT<- MyBUGSOutput(out,vars)
+
+cbind(coef(M),OUT)
+
+MCMCplot(J, 
+         params = c("beta\\[1\\]","beta\\[2\\]","beta\\[3\\]", "beta\\[4\\]","beta\\[5\\]","beta\\[6\\]","beta\\[7\\]","beta\\[8\\]", "beta\\[9\\]","beta\\[10\\]","beta\\[11\\]","beta\\[12\\]","beta\\[13\\]", "beta\\[14]","beta\\[15\\]","beta\\[16\\]","beta\\[17\\]","beta\\[18\\]", "beta\\[19]","beta\\[20\\]","beta\\[21\\]","beta\\[22\\]","beta\\[23\\]", "beta\\[24\\]","beta\\[25\\]","beta\\[26\\]") , 
+         
+       labels = c('A.melanoleuca','C.elaphus', 'C.lupus', 'C.temminckii', 'E.Barbara' ,'E.cephalopus','L.rufus', 'M. ursinus',       'M.foina', 'M.moschata', 'Mazama', 'O. virginianus', 
+                 'P.bengalensis', 'P.hermaphroditus', 'P.lotor', 'P.vitulina', 'R.tarandus' , 'R.Unicolor',
+                 'T.ornatus.P', 'T.ornatus.V',  'U.americanus','U.arctos', 'H.malayanus','U.maritimus','U.thibetanus' ,  'V.vulpes'),
+       rank = TRUE,
+         horiz = FALSE,
+       ISB =FALSE,
+       ref_ovl = TRUE) 
+
+MCMCplot(J, params = c("beta\\[1\\]","beta\\[29\\]","beta\\[31\\]","beta\\[30\\]", "beta\\[28\\]","beta\\[27\\]"),
+          labels = c('Alaska-US','New Mexico-US','szechuan-China','Peru & Venezuela','Jammu and Kahmir-India','Borneo-Indonesia'),
+         rank = TRUE,
+         horiz = FALSE,
+       ISB =FALSE,
+       ref_ovl = TRUE) 
+
+```
+
+#posterior of bears   
+```{r}
+
+#Jags modelling code
+sink("M_P1.txt")
+cat("
+model{
+  #2. Likelihood 
+    for (i in 1:N){  
+      Y[i] ~ dnorm(mu[i],tau)
+      mu[i] <-inprod(beta[],X[i,])  
+    }
+      
+    #1. Prior
+ for (i in 1:K) {
+   beta[i] ~ dnorm(0, 0.01)
+ }
+  sigma ~ dunif(0,100)
+  tau <- 1/(sigma*sigma)
+  
+  #predicted probabilities
+  AM<- beta[1] + beta[31] 
+  MU<-beta[1] + beta[8]+ beta[28] 
+  URI<-beta[1] + beta[22] +beta[28] 
+  HM<-beta[1] + beta[23] +beta[27] 
+  UM<-beta[1] + beta[24] 
+  UTI<-beta[1] + beta[25] +beta[28] 
+  TOP<-beta[1] + beta[19] +beta[30] 
+  TOV<-beta[1] + beta[20] +beta[30] 
+  UAA<-beta[1] + beta[21] 
+  UANM<-beta[1] + beta[21]+ beta[29]
+  URA<-beta[1] + beta[22] 
+  URNM<-beta[1] + beta[22]+ beta[29]
+  UTC<-beta[1] + beta[25] +beta[31] 
+pAM ~ dnorm(AM,tau)
+pMU ~ dnorm(MU,tau)
+pURI ~ dnorm(URI,tau)
+pHM ~ dnorm(HM,tau)
+pUM ~ dnorm(UM,tau)
+pUTI ~ dnorm(UTI,tau)
+pTOP ~ dnorm(TOP,tau)
+pTOV ~ dnorm(TOV,tau)
+pUAA ~ dnorm(UAA,tau)
+pUANM ~ dnorm(UANM,tau)
+pURA ~ dnorm(URA,tau)
+pURNM ~ dnorm(URNM,tau)
+pUTC ~ dnorm(UTC,tau)
+
+}
+
+",fill = TRUE)
+sink()
+```
+
+```{r}
+params <-c("pAM","pMU","pURI", "pHM", "pUM","pUTI", "pTOP", "pTOV", "pUAA" ,"pUANM","pURA", "pURNM", "pUTC")
+
+
+JP <- jags(data = win.data,
+           inits = inits,
+           parameters = params,
+           model.file = "M_P1.txt",
+           n.thin = 10,
+           n.chains = 3,
+           n.burnin = 40000,
+           n.iter   = 50000)
+
+#save(JP, file="M_P1.RData")
+#################
+
+outP <- JP$BUGSoutput
+outP<-print(outP, intervals=c(0.025, 0.975), digits=3)
+
+vars<-c("pAM","pHM","pMU","pTOP", "pTOV", "pUAA" ,"pUANM", "pUM" ,"pURA", "pURI", "pURNM", "pUTC","pUTI")
+
+MyBUGSHist(J$BUGSoutput,vars)
+MyBUGSChains(JP$BUGSoutput,vars)
+MyBUGSACF(JP$BUGSoutput,vars)
+
+OUT_P1<- MyBUGSOutput(JP$BUGSoutput,vars)
+
+```
+
+
+#FIGURE 2
+```{r}
+oso<-as.data.frame(OUT_P1)
+names(oso)[1] <- "mean"
+name<-factor(c("A.melanoleuca","H.malayanus","M.ursinus","T.ornatus.P","T.ornatus.V",
+              "U.americanus.A","U.americanus.NM","U.maritimus", "U.arctos.A", "U.arctos.I",
+                "U.arctos.NM","U.thibetanus.C","U.thibetanus.I"))
+oso$min<-oso$`2.5%`
+oso$max<-oso$`97.5%`
+#oso<-cbind(oso,sp)
+#p <- ggplot(oso, aes(sp, mean, colour = sp))
+
+sp2<-factor(c("AM","HM","MU", "TO.P","TO.V","UA.A","UA.NM","UM","UR.A","UR.I",
+              "UR.NM","UT.C", "UT.I"
+                   ))
+
+oso<-cbind(oso,sp2,name)
+
+
+##reordeing
+p<-oso %>%
+  arrange(mean) %>%
+  mutate(sp2 = factor(sp2, levels = c("AM","TO.V","TO.P","UT.I" ,"UT.C", "UA.NM","UA.A",
+  "UR.I","UR.NM","UR.A","HM","MU","UM"))) %>%
+  ggplot(aes(x=sp2, y=mean,shape = name ))+ theme_classic()
+
+
+#change color and symbol
+col_oso<-c("AM"="#FAD7A0",
+             "UT.I"="#F0B27A","UT.C"="#F0B27A",
+             "TO.V"="#EB984E","TO.P"="#EB984E", 
+             "UA.A"="#E59866","UA.NM"="#E59866", "HM"="#E59866",
+  "UR.I"="#CA6F1E","UR.A"="#CA6F1E","UR.NM"="#CA6F1E","MU"="#BA4A00","UM"="#A04000")
+
+
+p + geom_pointrange(aes(ymin = min, ymax = max,colour=sp2,fatten = 2), size=1.2) +
+   scale_color_manual(values = col_oso,labels=c("AM","UT.I" ,"UT.C","TO.V","TO.P", "UA.A","UA.NM",
+  "UL","UR.I","UR.A","UR.NM","MU","UM")) +
+  theme(legend.position="none",axis.text=element_text(size=16),axis.title=element_text(size=17,face="bold")) + xlab("Bear species") + ylab( expression(paste("predicted",delta^15,"N"))) +
+    scale_shape_manual(values = c(15,3,16,1,1,17,17,0,0,0,8,6,6)) +ylim(-8, 30)
+```
+
+
+##Pair comparison 
+```{r}
+#Jags modelling code
+sink("M_DifBear.txt")
+cat("
+model{
+  #2. Likelihood 
+    for (i in 1:N){  
+      Y[i] ~ dnorm(mu[i],tau)
+      mu[i] <-inprod(beta[],X[i,])  
+    }
+      
+    #1. Prior
+ for (i in 1:K) {
+   beta[i] ~ dnorm(0, 0.01)
+ }
+  sigma ~ dunif(0,100)
+  tau <- 1/(sigma*sigma)
+  
+  #predicted probabilities
+  B1<- beta[1] + beta[31] 
+  B2<-beta[1] + beta[25] +beta[28] 
+  B3<-beta[1] + beta[25] +beta[31] 
+  B4<-beta[1] + beta[20] +beta[30] 
+  B5<-beta[1] + beta[19] +beta[30] 
+  B6<-beta[1] + beta[21] 
+  B7<-beta[1] + beta[21]+ beta[29]
+  B8<-beta[1] + beta[23] +beta[27] 
+  B9<-beta[1] + beta[22] +beta[28] 
+  B10<-beta[1] + beta[22]
+  B11<-beta[1] + beta[22]+ beta[29]
+  B12<-beta[1] + beta[8]+ beta[28]
+  B13<-beta[1] + beta[24] 
+  
+  
+#Diferrence 
+D12<-B1-B2
+D13<-B1-B3
+D14<-B1-B4
+D15<-B1-B5
+D16<-B1-B6
+D17<-B1-B7
+D18<-B1-B8
+D19<-B1-B9
+D110<-B1-B10
+D111<-B1-B11
+D112<-B1-B12
+D113<-B1-B13
+
+D23<-B2-B3
+D24<-B2-B4
+D25<-B2-B5
+D26<-B2-B6
+D27<-B2-B7
+D28<-B2-B8
+D29<-B2-B9
+D210<-B2-B10
+D211<-B2-B11
+D212<-B2-B12
+D213<-B2-B13
+
+D34<-B3-B4
+D35<-B3-B5
+D36<-B3-B6
+D37<-B3-B7
+D38<-B3-B8
+D39<-B3-B9
+D310<-B3-B10
+D311<-B3-B11
+D312<-B3-B12
+D313<-B3-B13
+
+D45<-B4-B5
+D46<-B4-B6
+D47<-B4-B7
+D48<-B4-B8
+D49<-B4-B9
+D410<-B4-B10
+D411<-B4-B11
+D412<-B4-B12
+D413<-B4-B13
+
+D56<-B5-B6
+D57<-B5-B7
+D58<-B5-B8
+D59<-B5-B9
+D510<-B5-B10
+D511<-B5-B11
+D512<-B5-B12
+D513<-B5-B13
+
+D67<-B6-B7
+D68<-B6-B8
+D69<-B6-B9
+D610<-B6-B10
+D611<-B6-B11
+D612<-B6-B12
+D613<-B6-B13
+
+D78<-B7-B8
+D79<-B7-B9
+D710<-B7-B10
+D711<-B7-B11
+D712<-B7-B12
+D713<-B7-B13
+
+D89<-B8-B9
+D810<-B8-B10
+D811<-B8-B11
+D812<-B8-B12
+D813<-B8-B13
+
+D910<-B9-B10
+D911<-B9-B11
+D912<-B9-B12
+D913<-B9-B13
+
+D1011<-B10-B11
+D1012<-B10-B12
+D1013<-B10-B13
+
+D1112<-B11-B12
+D1113<-B11-B13
+
+D1213<-B12-B13
+
+
+  
+pD12 ~ dnorm(D12,tau)
+pD13 ~ dnorm(D13,tau)
+pD14 ~ dnorm(D14,tau)
+pD15 ~ dnorm(D15,tau)
+pD16 ~ dnorm(D16,tau)
+pD17 ~ dnorm(D17,tau)
+pD18 ~ dnorm(D18,tau)
+pD19 ~ dnorm(D19,tau)
+pD110 ~ dnorm(D110,tau)
+pD111 ~ dnorm(D111,tau)
+pD112 ~ dnorm(D112,tau)
+pD113 ~ dnorm(D113,tau)
+
+pD23 ~ dnorm(D23,tau)
+pD24 ~ dnorm(D24,tau)
+pD25 ~ dnorm(D25,tau)
+pD26 ~ dnorm(D26,tau)
+pD27 ~ dnorm(D27,tau)
+pD28 ~ dnorm(D28,tau)
+pD29 ~ dnorm(D29,tau)
+pD210 ~ dnorm(D210,tau)
+pD211 ~ dnorm(D211,tau)
+pD212 ~ dnorm(D212,tau)
+pD213 ~ dnorm(D213,tau)
+
+pD34 ~ dnorm(D34,tau)
+pD35 ~ dnorm(D35,tau)
+pD36 ~ dnorm(D36,tau)
+pD37 ~ dnorm(D37,tau)
+pD38 ~ dnorm(D38,tau)
+pD39 ~ dnorm(D39,tau)
+pD310 ~ dnorm(D310,tau)
+pD311 ~ dnorm(D311,tau)
+pD312 ~ dnorm(D312,tau)
+pD313 ~ dnorm(D313,tau)
+
+pD45 ~ dnorm(D45,tau)
+pD46 ~ dnorm(D46,tau)
+pD47 ~ dnorm(D47,tau)
+pD48 ~ dnorm(D48,tau)
+pD49 ~ dnorm(D49,tau)
+pD410 ~ dnorm(D410,tau)
+pD411 ~ dnorm(D411,tau)
+pD412 ~ dnorm(D412,tau)
+pD413 ~ dnorm(D413,tau)
+
+pD56 ~ dnorm(D56,tau)
+pD57 ~ dnorm(D57,tau)
+pD58 ~ dnorm(D58,tau)
+pD59 ~ dnorm(D59,tau)
+pD510 ~ dnorm(D510,tau)
+pD511 ~ dnorm(D511,tau)
+pD512 ~ dnorm(D512,tau)
+pD513 ~ dnorm(D513,tau)
+
+pD67 ~ dnorm(D67,tau)
+pD68 ~ dnorm(D68,tau)
+pD69 ~ dnorm(D69,tau)
+pD610 ~ dnorm(D610,tau)
+pD611 ~ dnorm(D611,tau)
+pD612 ~ dnorm(D612,tau)
+pD613 ~ dnorm(D613,tau)
+
+pD78 ~ dnorm(D78,tau)
+pD79 ~ dnorm(D79,tau)
+pD710 ~ dnorm(D710,tau)
+pD711 ~ dnorm(D711,tau)
+pD712 ~ dnorm(D712,tau)
+pD713 ~ dnorm(D713,tau)
+
+pD89 ~ dnorm(D89,tau)
+pD810 ~ dnorm(D810,tau)
+pD811 ~ dnorm(D811,tau)
+pD812 ~ dnorm(D812,tau)
+pD813 ~ dnorm(D813,tau)
+
+pD910 ~ dnorm(D910,tau)
+pD911 ~ dnorm(D911,tau)
+pD912 ~ dnorm(D912,tau)
+pD913 ~ dnorm(D913,tau)
+
+pD1011 ~ dnorm(D1011,tau)
+pD1012 ~ dnorm(D1012,tau)
+pD1013 ~ dnorm(D1013,tau)
+
+pD1112 ~ dnorm(D1112,tau)
+pD1113 ~ dnorm(D1113,tau)
+
+pD1213 ~ dnorm(D1213,tau)
+
+}
+
+",fill = TRUE)
+sink()
+
+```
+
+```{r}
+
+params <-c("pD12","pD13","pD14", "pD15", "pD16","pD17", "pD18","pD19", "pD110" ,"pD111","pD112","pD113",
+           "pD23","pD24", "pD25", "pD26","pD27", "pD28","pD29", "pD210" ,"pD211","pD212", "pD213",
+           "pD34", "pD35", "pD36","pD37", "pD38","pD39", "pD310" ,"pD311","pD312", "pD313",
+           "pD45", "pD46","pD47", "pD48","pD49", "pD410" ,"pD411","pD412", "pD413",
+           "pD56","pD57", "pD58","pD59", "pD510" ,"pD511","pD512", "pD513",
+           "pD67", "pD68","pD69", "pD610" ,"pD611","pD612", "pD613",
+           "pD78","pD79", "pD710" ,"pD711","pD712", "pD713",
+           "pD89", "pD810" ,"pD811","pD812", "pD813",
+           "pD910" ,"pD911","pD912", "pD913",
+           "pD1011","pD1012", "pD1013",
+           "pD1112", "pD1113",
+           "pD1213")
+
+
+J_Dif <- jags(data = win.data,
+           inits = inits,
+           parameters = params,
+           model.file = "M_DifBear.txt",
+           n.thin = 10,
+           n.chains = 3,
+           n.burnin = 40000,
+           n.iter   = 50000)
+
+#save(J_Dif, file="M_Dif.RData")
+
+#################
+
+
+outD <- J_Dif$BUGSoutput
+outD<-print(outD, intervals=c(0.025, 0.975), digits=2)
+
+
+ MCMCplot(J_Dif, 
+         params = params,
+           labels = c("1-2","pD13","pD14", "pD15", "pD16","pD17", "pD18","pD19", "pD110" ,"pD111","pD112","pD113",
+           "pD23","pD24", "pD25", "pD26","pD27", "pD28","pD29", "pD210" ,"pD211","pD212", "pD213",
+           "pD34", "pD35", "pD36","pD37", "pD38","pD39", "pD310" ,"pD311","pD312", "pD313",
+           "pD45", "pD46","pD47", "pD48","pD49", "pD410" ,"pD411","pD412", "pD413",
+           "pD56","pD57", "pD58","pD59", "pD510" ,"pD511","pD512", "pD513",
+           "pD67", "pD68","pD69", "pD610" ,"pD611","pD612", "pD613",
+           "pD78","pD79", "pD710" ,"pD711","pD712", "pD713",
+           "pD89", "pD810" ,"pD811","pD812", "pD813",
+           "pD910" ,"pD911","pD912","pD913",
+           "pD1011","pD1012","pD1013", 
+           "pD1112", "pD1113",
+           "pD1213"),
+        sz_labels=0.7,
+        sz_med=1,
+        sz_thick=2,
+        sz_thin=1,
+        xlab="Posterior differences",
+  sz_ax_txt=1.2,      
+sz_tick_txt=1,
+       ref_ovl = TRUE) 
+        
+```
+
+#posterior all
+```{r}
+##M19: species2+region
+
+#Jags modelling code
+sink("M_PT.txt")
+cat("
+model{
+  #2. Likelihood 
+    for (i in 1:N){  
+      Y[i] ~ dnorm(mu[i],tau)
+      mu[i] <-inprod(beta[],X[i,])  
+    }
+      
+    #1. Prior
+ for (i in 1:K) {
+   beta[i] ~ dnorm(0, 0.01)
+ }
+  sigma ~ dunif(0,10)
+  tau <- 1/(sigma*sigma)
+  
+  #predicted probabilities
+  AM<- beta[1] + beta[31] 
+  MU<-beta[1] + beta[8]+ beta[28] 
+  URI<-beta[1] + beta[22] +beta[28] 
+  HM<-beta[1] + beta[23] +beta[27] 
+  UM<-beta[1] + beta[24] 
+  UTI<-beta[1] + beta[25] +beta[28] 
+  TOP<-beta[1] + beta[19] +beta[30] 
+  TOV<-beta[1] + beta[20] +beta[30] 
+  UAA<-beta[1] + beta[21] 
+  UANM<-beta[1] + beta[21]+ beta[29]
+  URA<-beta[1] + beta[22] 
+  URNM<-beta[1] + beta[22]+ beta[29]
+  UTC<-beta[1] + beta[25] +beta[31] 
+  
+CEL<-beta[1] + beta[2] +beta[28]
+CLA<-beta[1] + beta[3] 
+CTC<-beta[1] + beta[4] +beta[31]
+EB <-beta[1] + beta[5] +beta[30]
+ECC<-beta[1] + beta[6] +beta[31]
+LRN<-beta[1] + beta[7] +beta[19]
+MFO<-beta[1] + beta[9] +beta[28]
+MMC<-beta[1] + beta[10] +beta[31]
+MA <-beta[1] + beta[11] +beta[30]
+OVN<-beta[1] + beta[12] +beta[19]
+PBI<-beta[1] + beta[13] +beta[28]
+PBB<-beta[1] + beta[13] +beta[27]
+PHB<-beta[1] + beta[14] +beta[27]
+PLN<-beta[1] + beta[15] +beta[19]
+PVI<-beta[1] + beta[16] 
+RTA<-beta[1] + beta[17] 
+RUB<-beta[1] + beta[18] +beta[27]
+VVA<-beta[1] + beta[26] 
+
+  
+pAM ~ dnorm(AM,tau)
+pMU ~ dnorm(MU,tau)
+pURI ~ dnorm(URI,tau)
+pHM ~ dnorm(HM,tau)
+pUM ~ dnorm(UM,tau)
+pUTI ~ dnorm(UTI,tau)
+pTOP ~ dnorm(TOP,tau)
+pTOV ~ dnorm(TOV,tau)
+pUAA ~ dnorm(UAA,tau)
+pUANM ~ dnorm(UANM,tau)
+pURA ~ dnorm(URA,tau)
+pURNM ~ dnorm(URNM,tau)
+pUTC ~ dnorm(UTC,tau)
+
+pCEL ~ dnorm(CEL,tau)
+pCLA ~ dnorm(CLA,tau)
+pCTC ~ dnorm(CTC,tau)
+pEB ~ dnorm(EB,tau)
+pECC ~ dnorm(ECC,tau)
+pLRN ~ dnorm(LRN,tau)
+pMFO ~ dnorm(MFO,tau)
+pMMC ~ dnorm(MMC,tau)
+pMA ~ dnorm(MA,tau)
+pOVN ~ dnorm(OVN,tau)
+pPBI ~ dnorm(PBI,tau)
+pPBB ~ dnorm(PBI,tau)
+pPHB ~ dnorm(PHB,tau)
+pPLN ~ dnorm(PLN,tau)
+pPVI ~ dnorm(PVI,tau)
+pRTA ~ dnorm(RTA,tau)
+pRUB ~ dnorm(RUB,tau)
+pVVA ~ dnorm(VVA,tau)
+}
+
+",fill = TRUE)
+sink()
+
+```
+
+```{r}
+
+params <-c("pAM","pMU","pURI", "pHM", "pUM","pUTI", "pTOP", "pTOV", "pUAA" ,"pUANM","pURA", "pURNM", "pUTC","pCEL","pCLA","pCTC","pEB","pECC","pLRN","pMFO","pMMC","pMA","pOVN","pPBI","pPBB","pPHB","pPLN","pPVI",
+           "pRTA","pRUB","pVVA")
+
+J_PT <- jags(data = win.data,
+           inits = inits,
+           parameters = params,
+           model.file = "M_PT.txt",
+           n.thin = 10,
+           n.chains = 3,
+           n.burnin = 40000,
+           n.iter   = 50000)
+
+#save(J_PT, file="M_PT.RData")
+
+#################
+
+#TABLE1
+
+outPT <- J_PT$BUGSoutput
+outPT<-print(outPT, intervals=c(0.025, 0.975), digits=2)
+```
+
+## Literature data
+
+ombine Means and SDs of bear population into one Group (bear species)
+```{r}
+# function from
+# https://training.cochrane.org/handbook/current/chapter-06#section-6-5-2
+
+
+# Section 2: First option: StatsToDo formula
+
+Calc1 <- function(myDat) # myDat is matrix with 3 cols of n, mean, and SD
+{
+  m = nrow(myDat)  # number of groups
+  tn = 0
+  tx = 0
+  txx = 0
+  for(i in 1:m)
+  {
+    n = myDat[i,1]
+    mean = myDat[i,2]
+    sd = myDat[i,3]
+    x = n * mean
+    xx = sd^2*(n - 1) + x^2 / n 
+    out<-cat("grp",i," n=",n," mean=",mean," SD=", sd, " Ex=", x, " Exx=",xx, "\n")
+    tn = tn + n
+    tx = tx + x
+    txx = txx + xx
+  }
+  tmean = tx / tn
+  tsd = sqrt((txx - tx^2/tn) / (tn - 1))
+  out <- cat("Combined","n=",tn," mean=",tmean," SD=", tsd, " Ex=", tx, " Exx=",txx,"\n")
+  c(tn,tmean,tsd)
+}
+```
+
+###creating new dataset 
+```{r}
+library(tidyverse)
+oso_N<-oso %>% select(1, 2,8)
+
+#write.csv(oso_N, file = "oso_N.csv")
+#/Users/nereyda/Dropbox/isotopos/oso_N.csv
+
+#fusion U. thibetanus
+g1 <- c(5, 4.340989, 1.673816) #n mean,sd of grp 1
+g2 <- c(5, 3.420649, 1.695043) #n mean,sd of grp 2
+
+Ut <- Calc1(matrix(data=c(g1,g2), ncol=3, byrow=TRUE)) # combine 3 groups entry data into matrix and call function
+#10.000000  3.880819  1.660552
+
+#fusion T. ornatus
+g1 <- c(6, 4.498520, 1.643286) #n mean,sd of grp 1
+g2 <- c(4, 4.313348, 1.724513) #n mean,sd of grp 2
+
+To <- Calc1(matrix(data=c(g1,g2), ncol=3, byrow=TRUE)) 
+#10.000000  4.424451  1.581352
+
+#fusion U. americanus
+g1 <- c(3, 4.243162, 1.664283) #n mean,sd of grp 1
+g2 <- c(6, 5.982400, 1.643405) #n mean,sd of grp 2
+
+Ua <- Calc1(matrix(data=c(g1,g2), ncol=3, byrow=TRUE)) 
+#9.000000 5.402654 1.771069
+
+#fusion U. arctos
+g1 <- c(8, 6.666231, 1.616619) #n mean,sd of grp 1
+g2 <- c(2, 1.522400, 1.828247) #n mean,sd of grp 2
+g3 <- c(8, 8.324409, 1.574946) #n mean,sd of grp 2
+
+Ur <- Calc1(matrix(data=c(g1,g2,g3), ncol=3, byrow=TRUE)) 
+#18.000000  6.831662  2.582995
+
+#create new dataframe
+name<-factor(c("A.melanoleuca","U.thibetanus","T.ornatus", "U.americanus","H.malayanus","U.arctos","M.ursinus","U.maritimus"))
+mean<-c(1.535481, 3.880819, 4.424451, 5.402654, 6.270083, 6.831662,6.753491, 21.056380)
+sd_N <- c(1.628057, 1.660552, 1.581352,1.771069,1.708794, 2.582995, 2.146748 , 1.676094)
+
+oso_N15<-data.frame(name, mean,sd_N)
+
+```
+
+#work with Literature review data and create dummy variables
+```{r}
+#diet <- read.csv(file="/Users/nereyda/Dropbox/Doctoral Thesis/Isotopes/R_diet.csv", header=TRUE, sep=",") #raw
+diet2 <- read.csv(file="/Users/nereyda/Dropbox/Doctoral Thesis/Isotopes/diet2.csv", header=TRUE, sep=",") 
+
+diet2$name<-diet2$bear
+#subset
+veg <- diet2[diet2$Food == "vegetal", ]
+ins<- diet2[diet2$Food == "insect", ]
+vrt<- diet2[diet2$Food == "vertebrate", ]
+
+veg<-veg$len
+ins<-ins$len
+vrt<-vrt$len 
+Lit<-cbind(oso_N15,veg,ins,vrt)
+
+library(corrplot)
+
+dat<-Lit[,2:6]
+corrplot(cor(dat),
+  method = "number",
+  type = "upper" # show only upper side
+)
+
+# Pearson correlation test
+veg <- cor.test(Lit$mean, Lit$veg)
+#-0.7883103  #t = -3.1384, df = 6, p-value = 0.02011
+vrt <- cor.test(Lit$mean, Lit$vrt)
+#0.9333812  #t = 6.3706, df = 6, p-value = 0.0007027
+ins <- cor.test(Lit$mean, Lit$ins)
+#-0.1577879  #t = -0.3914, df = 6, p-value = 0.709
+
+```
+
+# include conflict lit rev
+```{r}
+sum <- read.csv(file="/Users/nereyda/Documents/Doctoral Thesis/Isotopes/summary.csv")
+pred<-sum$I_pred
+crop<-sum$I_crop
+
+conf<-cbind(Lit,pred, crop)
+# Pearson correlation test predation......no
+cor.test(conf$pred, conf$mean)
+#-0.3169812 #t = -0.81866, df = 6, p-value = 0.4443
+cor.test(conf$pred, conf$veg)
+#0.370535  #t = 0.97718, df = 6, p-value = 0.3662
+cor.test(conf$pred, conf$vrt)
+#-0.26936  #t = -0.68512, df = 6, p-value = 0.5188
+
+# Pearson correlation test crops......no
+cor.test(conf$crop, conf$mean)
+#-0.1876662  #t = -0.468, df = 6, p-value = 0.6563
+cor.test(conf$crop, conf$veg)
+#-0.2379825   #t = -0.60018, df = 6, p-value = 0.5703
+cor.test(conf$crop, conf$vrt)
+#-0.4020061  #t = -1.0754, df = 6, p-value = 0.3235
+
+```
